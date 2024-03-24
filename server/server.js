@@ -3,7 +3,7 @@ import * as dotenv from "dotenv";
 import cors from "cors";
 import * as fs from "fs";
 import OpenAI from "openai"
-import { getSubtitles } from "youtube-caption-extractor";
+import { getSubtitles } from "youtube-captions-scraper";
 
 dotenv.config();
 
