@@ -3,7 +3,7 @@ import * as dotenv from "dotenv";
 import cors from "cors";
 import * as fs from "fs";
 import OpenAI from "openai"
-import { getSubtitles } from "youtube-captions-scraper";
+import { YoutubeTranscript } from "youtube-transcript";
 
 dotenv.config();
 
@@ -23,25 +23,19 @@ app.get("/", async (req, res) => {
 
 app.post("/", async (req, res) => {
     try {
-        const videoID = (req.body.url).split("v=")[1].substring(0, 11);
-        console.log({ videoID });
-
-        const transcript = (await getSubtitles({ videoID })).map((e) => e.text).toString();
-        console.log({ transcript });
+        const url = req.body.url;
+        const transcript = (await YoutubeTranscript.fetchTranscript(url)).map((e) => e.text).toString();
 
         const completion = await openai.chat.completions.create({
             messages: [
                 {role: "system", content: fs.readFileSync("instructions.txt").toString()},
-                {role: "user", content: `${transcript}`}
+                {role: "user", content: transcript}
             ],
             model: "gpt-3.5-turbo",
         });
 
-        const results = JSON.parse(completion.choices[0].message.content).flashcards;
-        console.log({ results });
-
         res.status(200).send({
-            flashcards: results
+            flashcards: JSON.parse(completion.choices[0].message.content).flashcards
         });
     } catch (error) {
         console.log(error);
