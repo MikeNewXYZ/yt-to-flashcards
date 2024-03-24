@@ -24,7 +24,10 @@ app.get("/", async (req, res) => {
 app.post("/", async (req, res) => {
     try {
         const url = req.body.url;
+        console.log({ url });
+
         const transcript = (await YoutubeTranscript.fetchTranscript(url)).map((e) => e.text).toString();
+        console.log({ transcript });
 
         const completion = await openai.chat.completions.create({
             messages: [
