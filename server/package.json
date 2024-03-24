@@ -14,6 +14,6 @@
     "express": "^4.19.1",
     "nodemon": "^3.1.0",
     "openai": "^4.29.2",
-    "youtube-transcript": "^1.1.0"
+    "youtube-caption-extractor": "^1.4.3"
   }
 }
