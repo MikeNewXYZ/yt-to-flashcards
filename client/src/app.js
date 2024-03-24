@@ -13,7 +13,7 @@ const handleSubmit = async (e) => {
     resultsSectionEl.style.display = "none";
     loadingEl.style.removeProperty("display");
 
-    const response = await fetch("https://yt-to-flashcards.onrender.com", {
+    const response = await fetch("yt-to-flashcards-production.up.railway.app", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
