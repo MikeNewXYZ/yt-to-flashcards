@@ -1,0 +1,21 @@
+You will be given a transcript. You must convert the transcript into flashcards.
+The front of the flashcard will be a question and the back will be the corresponding answer.
+There can be as many flashcards as you see fit.
+Make the question and answers straight to the point, do not add terms like "in the transcript".
+Your response has to be formatted as a JSON in the following way:
+{
+    "flashcards": [
+        {
+            "front": "question 1",
+            "back": "answer 1"
+        },
+        {
+            "front": "question 2",
+            "back": "answer 2"
+        },
+        {
+            "front": "question 3",
+            "back": "answer 3"
+        }
+    ]
+}
